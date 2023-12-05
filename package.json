@@ -1,7 +1,6 @@
 {
     "packageManager": "npm@7.24.2",
     "installCommand": "npm install",
-    "buildCommand": "npm run build",
     "private": true,
     "type": "module",
     "scripts": {
