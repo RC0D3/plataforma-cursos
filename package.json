@@ -3,6 +3,7 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "install": "npm install",
         "dev": "vite",
         "build": "vite build"
     },
