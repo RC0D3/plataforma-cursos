@@ -138,10 +138,11 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-evenly;
-    text-align: center;
+    text-align: justify;
     padding: 2rem;
     border-radius: 10px;
     gap: 1rem;
+
 
 }
 
