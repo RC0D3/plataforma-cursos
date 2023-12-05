@@ -1,6 +1,6 @@
 <?php
 // $publicPath = '../\\\' . public_path();
-$publicPath = '.vercel/output/';
+$publicPath = '/vercel/output/';
 $folderList = [];
 
 // Get all folders in the /public directory
