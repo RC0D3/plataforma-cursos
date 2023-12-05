@@ -4,6 +4,20 @@
     {
       "src": "/api/index.php",
       "use": "vercel-php@0.6.0"
+    },
+    {
+      "src": "/public/**",
+      "use": "@vercel/static",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "distDir": "/public/build/"
+      },
+      "build": {
+        "cmd": "npm install && npm run build",
+        "env": {
+          "NODE_ENV": "production"
+        }
+      }
     }
   ],
   "routes": [
