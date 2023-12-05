@@ -80,7 +80,6 @@ class CursosTableSeeder extends Seeder
                 'carga_horaria' => '30 horas',
                 'pre_requisitos' => 'Nenhum',
             ],
-            // Adicione outros cursos com os campos adicionais aqui
         ];
 
         DB::table('cursos')->insert($cursos);

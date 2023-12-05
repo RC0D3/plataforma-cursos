@@ -9,6 +9,7 @@ class Curso extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['titulo', 'descricao', 'video_url', 'pre_requisitos', 'carga_horaria', 'avaliacoes', 'instrutor', 'preco', 'categoria'];
     public function estaInscrito()
     {
         // Obtém o usuário autenticado (se existir)
