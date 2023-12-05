@@ -25,6 +25,11 @@
 
 }
 
+.navbar .logo {
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+}
+
 .navbar ul {
     display: flex;
     align-items: center;
@@ -56,6 +61,7 @@
     background-color: #383838;
     color: #b9ffb9;
     font-weight: 800;
+    font-size: 0.9rem;
 }
 
 .login-btn {
