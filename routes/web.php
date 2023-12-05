@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Curso;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $cursos = Curso::all();
+
+    return view('welcome', compact('cursos'));
 });
 
 Route::get('/planos', function () {
@@ -28,6 +32,7 @@ Route::get('/sobre', function () {
 
 
 
+Route::get('/cursos/{id}', [CursoController::class, 'show']);
 
 
 Route::middleware('auth')->group(function () {

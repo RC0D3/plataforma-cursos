@@ -149,6 +149,19 @@
     gap: 1rem;
 }
 
+.main .curso {
+    background-color: #b9ffb9;
+    border: 3px solid #fafafa;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: justify;
+    padding: 2rem;
+    border-radius: 10px;
+    gap: 1rem;
+}
+
 .main .cursos-box .curso a {
     color: #161313;
 }

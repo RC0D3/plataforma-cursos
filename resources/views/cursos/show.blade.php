@@ -43,31 +43,23 @@
     </nav>
   </header>
   <main class="main">
-    <h1>A CursosMill tem tudo que você precisa</h1>
-    <ul class="categorias">
-      <li><a href="#">Programação</a></li>
-      <li><a href="#">Culinária</a></li>
-      <li><a href="#">Engenharia</a></li>
-      <li><a href="#">Gastronomia</a></li>
-      <li><a href="#">Ciêcias</a></li>
-      <li><a href="#">Nutrição</a></li>
-    </ul>
-    <span class="divider"></span>
-    <h3 class="hot">EM ALTA</h3>
-    <div class="cursos-box">
-      @foreach($cursos as $curso)
-      <div class="curso">
-        <h3>{{$curso->titulo}} <small>- {{ $curso->categoria }} ({{ $curso->avaliacoes }})</small></h3>
-        <p>{{$curso->descricao}}</p>
-        <h4>Apenas R${{$curso->preco}} <small>
-            <p>Instrutor: {{$curso->instrutor}}</p>
-          </small>
-        </h4>
+    <div class="curso">
 
+      <h2>{{ $curso->titulo }}</h2>
+      <span class="divider"></span>
+      <div>
+        <p><strong>Instrutor:</strong> {{ $curso->instrutor }}</p>
+        <p><strong>Categoria:</strong> {{ $curso->categoria }}</p>
+        <p><strong>Preço:</strong> {{ $curso->preco }}</p>
+        <p><strong>Avaliações:</strong> {{ $curso->avaliacoes }}</p>
+        <p><strong>Descrição:</strong> {{ $curso->descricao }}</p>
 
-        <a href="{{url("/cursos/$curso->id")}}">Mais informações </a>
+        <p><strong>Carga Horária:</strong> {{ $curso->carga_horaria }}</p>
+
+        <p><strong>Pré-Requisitos:</strong> {{ $curso->pre_requisitos }}</p>
+
       </div>
-      @endforeach
+      <iframe width="560" height="315" src="{{ $curso->video_url }}" frameborder="0" allowfullscreen></iframe>
     </div>
   </main>
   <footer class="footer">
