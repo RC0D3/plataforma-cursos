@@ -10,21 +10,6 @@
       "use": "@vercel/static"
     }
   ],
-  "functions": [
-    {
-      "src": "/",
-      "include": [
-        "package.json",
-        "node_modules/**/*",
-        ".next/**/*"
-      ],
-      "exclude": [
-        "node_modules/.cache/**/*",
-        "/public/dist/**/*"
-      ],
-      "npmBuildScript": "build"
-    }
-  ],
   "routes": [
     {
       "src": "/(css|js)/(.*)",
@@ -35,8 +20,6 @@
       "dest": "/api/index.php"
     }
   ],
-  "buildCommand": "npm run build",
-  "installCommand": "npm install",
   "env": {
     "APP_NAME": "Vercel Laravel",
     "APP_ENV": "local",
