@@ -7,17 +7,22 @@
     },
     {
       "src": "/public/**",
-      "use": "@vercel/static",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "distDir": "/public/build/"
-      },
-      "build": {
-        "cmd": "npm install && npm run build",
-        "env": {
-          "NODE_ENV": "production"
-        }
-      }
+      "use": "@vercel/static"
+    }
+  ],
+  "functions": [
+    {
+      "src": "/",
+      "include": [
+        "package.json",
+        "node_modules/**/*",
+        ".next/**/*"
+      ],
+      "exclude": [
+        "node_modules/.cache/**/*",
+        "/public/dist/**/*"
+      ],
+      "npmBuildScript": "build"
     }
   ],
   "routes": [
