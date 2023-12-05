@@ -1,5 +1,6 @@
 <?php
-$publicPath = '../' . public_path();
+// $publicPath = '../\\\' . public_path();
+$publicPath = '/var/task/user/';
 $folderList = [];
 
 // Get all folders in the /public directory
