@@ -17,11 +17,20 @@
         <li><a href="#">Cursos</a></li>
         <li><a href="{{ route('planos') }}">Planos</a></li>
         <li><a href="{{ route('sobre') }}">Sobre</a></li>
+        @auth
+        @hasrole('admin')
         <li><a href="{{ route('dashboard') }}">Admin</a></li>
+        @endhasrole
+        @endauth
       </ul>
       @if (Route::has('login'))
       @auth
-      <a class="btn login-btn" href="{{ url('/dashboard') }}">Dashboard</a>
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+
+        <a href="{{route('logout')}}" onclick="event.preventDefault();
+                                                this.closest('form').submit();" class="btn login-btn"> Sair</a>
+      </form>
       @else
       <a class="btn login-btn" href="{{ route('login') }}">Login</a>
       @endauth
