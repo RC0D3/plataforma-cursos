@@ -14,7 +14,8 @@ class CursoController extends Controller
         if (!$curso) {
             return abort(404, 'Curso não encontrado');
         }
+        $estaInscrito = $curso->estaInscrito();
 
-        return view('cursos.show', compact('curso'));
+        return view('cursos.show', compact('curso', 'estaInscrito'));
     }
 }

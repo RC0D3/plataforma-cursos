@@ -43,31 +43,46 @@
     </nav>
   </header>
   <main class="main">
-    <h1>A CursosMill tem tudo que você precisa</h1>
-    <ul class="categorias">
-      <li><a href="#">Programação</a></li>
-      <li><a href="#">Culinária</a></li>
-      <li><a href="#">Engenharia</a></li>
-      <li><a href="#">Gastronomia</a></li>
-      <li><a href="#">Ciêcias</a></li>
-      <li><a href="#">Nutrição</a></li>
-    </ul>
-    <span class="divider"></span>
-    <h3 class="hot">EM ALTA</h3>
-    <div class="cursos-box">
-      @foreach($cursos as $curso)
-      <div class="curso">
-        <h3>{{$curso->titulo}} <small>- {{ $curso->categoria }} ({{ $curso->avaliacoes }})</small></h3>
-        <p>{{$curso->descricao}}</p>
-        <h4>Apenas R${{$curso->preco}} <small>
-            <p>Instrutor: {{$curso->instrutor}}</p>
-          </small>
-        </h4>
+    @if(session('success'))
+    <div class="alert alert-success">
+      {{ session('success') }}
+    </div>
+    @endif
+    <div class="painel">
+
+      <h2>Lista de Alunos</h2><a href="{{route('alunos.create')}}">+</a>
+      <span class="divider"></span>
+      <table style="width: 100%;">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($alunos as $aluno)
+          <tr>
+            <td>{{ $aluno->id }}</td>
+            <td>{{ $aluno->name }}</td>
+            <td>{{ $aluno->email }}</td>
+            <td>
+              <a href="{{ route('alunos.show', $aluno->id) }}">Ver</a>|
+              <a href="{{ route('alunos.edit', $aluno->id) }}">Editar</a>|
+              <form action="{{ route('alunos.destroy', $aluno->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" onclick="return confirm('Tem certeza?')">Excluir</button>
+              </form>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
 
 
-        <a href="{{url("/cursos/$curso->id")}}">Mais informações </a>
-      </div>
-      @endforeach
+
     </div>
   </main>
   <footer class="footer">

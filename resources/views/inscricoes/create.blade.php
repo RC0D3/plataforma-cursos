@@ -43,31 +43,36 @@
     </nav>
   </header>
   <main class="main">
-    <h1>A CursosMill tem tudo que você precisa</h1>
-    <ul class="categorias">
-      <li><a href="#">Programação</a></li>
-      <li><a href="#">Culinária</a></li>
-      <li><a href="#">Engenharia</a></li>
-      <li><a href="#">Gastronomia</a></li>
-      <li><a href="#">Ciêcias</a></li>
-      <li><a href="#">Nutrição</a></li>
-    </ul>
-    <span class="divider"></span>
-    <h3 class="hot">EM ALTA</h3>
-    <div class="cursos-box">
-      @foreach($cursos as $curso)
-      <div class="curso">
-        <h3>{{$curso->titulo}} <small>- {{ $curso->categoria }} ({{ $curso->avaliacoes }})</small></h3>
-        <p>{{$curso->descricao}}</p>
-        <h4>Apenas R${{$curso->preco}} <small>
-            <p>Instrutor: {{$curso->instrutor}}</p>
-          </small>
-        </h4>
+    <div class="curso">
 
+      <h2>Inscrição no Curso: {{ $curso->titulo }}</h2>
 
-        <a href="{{url("/cursos/$curso->id")}}">Mais informações </a>
-      </div>
-      @endforeach
+      <form method="POST" action="{{ route('inscricoes.store', $curso->id) }}">
+        @csrf
+
+        <div class="marign">
+          <label for="nome">Nome:</label>
+          <input type="text" name="nome" id="nome" class="form-control" value="{{ auth()->user()->name }}" required readonly>
+        </div>
+
+        <div class="margin">
+          <label for="email">E-mail:</label>
+          <input type="email" name="email" id="email" class="form-control" value="{{ auth()->user()->email }}" required readonly>
+        </div>
+
+        <div class="margin">
+          <label for="forma_pagamento">Forma de Pagamento:</label>
+          <select name="forma_pagamento" id="forma_pagamento" class="form-control" required>
+            <option value="cartao_credito">Cartão de Crédito</option>
+            <option value="boleto">Boleto Bancário</option>
+            <option value="paypal">PayPal</option>
+          </select>
+        </div>
+
+        {{-- Adicione outros campos do formulário conforme necessário --}}
+
+        <button type="submit" class="btn btn-primary">Enviar Inscrição</button>
+      </form>
     </div>
   </main>
   <footer class="footer">

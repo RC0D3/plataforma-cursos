@@ -43,4 +43,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function cursos()
+    {
+        return $this->belongsToMany(Curso::class, 'inscricoes', 'user_id', 'curso_id')->withPivot('created_at');
+    }
 }

@@ -43,31 +43,31 @@
     </nav>
   </header>
   <main class="main">
-    <h1>A CursosMill tem tudo que você precisa</h1>
-    <ul class="categorias">
-      <li><a href="#">Programação</a></li>
-      <li><a href="#">Culinária</a></li>
-      <li><a href="#">Engenharia</a></li>
-      <li><a href="#">Gastronomia</a></li>
-      <li><a href="#">Ciêcias</a></li>
-      <li><a href="#">Nutrição</a></li>
-    </ul>
-    <span class="divider"></span>
-    <h3 class="hot">EM ALTA</h3>
-    <div class="cursos-box">
-      @foreach($cursos as $curso)
-      <div class="curso">
-        <h3>{{$curso->titulo}} <small>- {{ $curso->categoria }} ({{ $curso->avaliacoes }})</small></h3>
-        <p>{{$curso->descricao}}</p>
-        <h4>Apenas R${{$curso->preco}} <small>
-            <p>Instrutor: {{$curso->instrutor}}</p>
-          </small>
-        </h4>
+    @if(session('success'))
+    <div class="alert alert-success">
+      {{ session('success') }}
+    </div>
+    @endif
+    <div class="painel">
+
+      <h2>Editar Aluno</h2>
+      <span class="divider"></span>
+
+      <form action="{{ route('alunos.update', $aluno->id) }}" method="POST">
+        @csrf
+        @method('PUT')
+
+        <label for="nome">Nome:</label>
+        <input type="text" name="name" value="{{ old('nome', $aluno->name) }}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="{{ old('email', $aluno->email) }}" required>
+
+        <!-- Adicione outros campos conforme necessário -->
+        <button type="submit" class="btn">Salvar</button>
+      </form>
 
 
-        <a href="{{url("/cursos/$curso->id")}}">Mais informações </a>
-      </div>
-      @endforeach
     </div>
   </main>
   <footer class="footer">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\InscricaoController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Curso;
 use Illuminate\Support\Facades\Route;
@@ -32,13 +33,16 @@ Route::get('/sobre', function () {
 
 
 
-Route::get('/cursos/{id}', [CursoController::class, 'show']);
+Route::get('/cursos/{id}', [CursoController::class, 'show'])->name('cursos.show');
 
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/cursos/{cursoId}/inscricao', [InscricaoController::class, 'create'])->name('inscricoes.create');
+    Route::post('/cursos/{cursoId}/inscricao', [InscricaoController::class, 'store'])->name('inscricoes.store');
 });
 
 require __DIR__ . '/auth.php';

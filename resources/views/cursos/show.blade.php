@@ -14,7 +14,7 @@
     <nav class="navbar">
       <h2 class="logo">CursosMill</h2>
       <ul class="ul">
-        <li><a href="#">Cursos</a></li>
+        <li><a href="{{url('/')}}">Cursos</a></li>
         <li><a href="{{ route('planos') }}">Planos</a></li>
         <li><a href="{{ route('sobre') }}">Sobre</a></li>
         @auth
@@ -43,6 +43,11 @@
     </nav>
   </header>
   <main class="main">
+    @if(session('success'))
+    <div class="alert alert-success">
+      {{ session('success') }}
+    </div>
+    @endif
     <div class="curso">
 
       <h2>{{ $curso->titulo }}</h2>
@@ -59,7 +64,19 @@
         <p><strong>Pré-Requisitos:</strong> {{ $curso->pre_requisitos }}</p>
 
       </div>
+
+
+      @if ($estaInscrito)
+      <!-- Exibir o vídeo ou qualquer outra informação para usuários inscritos -->
+      <p>Vídeo do curso:</p>
       <iframe width="560" height="315" src="{{ $curso->video_url }}" frameborder="0" allowfullscreen></iframe>
+      @else
+      <a class="btn login-btn" href="{{ route('inscricoes.create', $curso->id) }}">Inscreva-se</a>
+      @endif
+
+
+
+
     </div>
   </main>
   <footer class="footer">

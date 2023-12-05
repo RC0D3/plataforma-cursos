@@ -43,31 +43,38 @@
     </nav>
   </header>
   <main class="main">
-    <h1>A CursosMill tem tudo que você precisa</h1>
-    <ul class="categorias">
-      <li><a href="#">Programação</a></li>
-      <li><a href="#">Culinária</a></li>
-      <li><a href="#">Engenharia</a></li>
-      <li><a href="#">Gastronomia</a></li>
-      <li><a href="#">Ciêcias</a></li>
-      <li><a href="#">Nutrição</a></li>
-    </ul>
-    <span class="divider"></span>
-    <h3 class="hot">EM ALTA</h3>
-    <div class="cursos-box">
-      @foreach($cursos as $curso)
-      <div class="curso">
-        <h3>{{$curso->titulo}} <small>- {{ $curso->categoria }} ({{ $curso->avaliacoes }})</small></h3>
-        <p>{{$curso->descricao}}</p>
-        <h4>Apenas R${{$curso->preco}} <small>
-            <p>Instrutor: {{$curso->instrutor}}</p>
-          </small>
-        </h4>
+    @if(session('success'))
+    <div class="alert alert-success">
+      {{ session('success') }}
+    </div>
+    @endif
+    <div class="painel">
+
+      <h3>Criar Aluno</h3>
+      <span class="divider"></span>
+
+      <form method="POST" action="{{ route('alunos.store') }}">
+        @csrf
+        <label for="nome">Nome*</label>
+        <input type="text" id="nome" name="name" placeholder="Digite seu nome" value="{{old('name')}}" required autofocus autocomplete="name">
+        <x-input-error :messages="$errors->get('name')" style="margin-top: 0.5rem;" />
 
 
-        <a href="{{url("/cursos/$curso->id")}}">Mais informações </a>
-      </div>
-      @endforeach
+        <label for="email">Email*</label>
+        <input type="text" id="email" name="email" placeholder="Digite seu e-mail" value="{{old('email')}}" required autocomplete="username">
+        <x-input-error :messages="$errors->get('email')" style="margin-top: 0.5rem;" />
+
+        <label for="password">Senha*</label>
+        <input type="password" id="password" placeholder="Digite uma senha segura" name="password" required autocomplete="new-password">
+        <x-input-error :messages="$errors->get('password')" style="margin-top: 0.5rem;" />
+
+        <label for="repPassword">Confirmar Senha*</label>
+        <input type="password" id="repPassword" placeholder="Repita sua senha" name="password_confirmation" required autocomplete="new-password">
+        <x-input-error :messages="$errors->get('password_confirmation')" style="margin-top: 0.5rem;" />
+
+        <button class="btn" id="submit-btn" value="submit">Criar</button>
+      </form>
+
     </div>
   </main>
   <footer class="footer">

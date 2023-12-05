@@ -1,64 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CursosMill | Portal Admin</title>
-
-    @vite(['resources/css/app.css','resources/css/painel.css'])
-
+    <title>CursoMill | Plataforma de Cursos Online</title>
+    @vite('resources/css/app.css')
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
-    <main class="main">
-
-        <div class="home">
-            <a href="{{url('/')}}">
-                &lt;</a>
-        </div>
-        <h1 class="title">Portal Admin</h1>
-        <div class="form-box">
-            <form method="POST" action="{{ url('/') }}">
+    <header>
+        <nav class="navbar">
+            <h2 class="logo">CursosMill</h2>
+            <ul class="ul">
+                <li><a href="{{url('/')}}">Cursos</a></li>
+                <li><a href="{{ route('planos') }}">Planos</a></li>
+                <li><a href="{{ route('sobre') }}">Sobre</a></li>
+                @auth
+                @hasrole('admin')
+                <li><a href="{{ route('dashboard') }}">Admin</a></li>
+                @endhasrole
+                @endauth
+            </ul>
+            @if (Route::has('login'))
+            @auth
+            <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <label for="nome">Editar nome do curso</label>
 
-                <select name="curso" id="nomeCurso">
-
-                    <option value="curso">Curso 01</option>
-                    <option value="curso">Curso 02</option>
-                    <option value="curso">Curso 03</option>
-                    <option value="curso">Curso 04</option>
-                    <option value="curso">Curso 04</option>
-                    <option value="curso">Curso 05</option>
-                </select>
-                <input type="text" placeholder="Novo nome do curso">
-
-                <label for="descrição">Mudar a descrição</label>
-                <textarea name="descricao" id="descricao" cols="30" rows="10" placeholder="Digite a nova descrição do curso"></textarea>
-
-                <label for="carga">Carga Horária</label>
-                <input type="text" id="cargaHoraria" placeholder="Nova carga horária">
-
-                <label for="professor">Nome do professor</label>
-                <input type="text" placeholder="Digite o nome do professor" id="nomeProf">
-
-                <label for="preco">Preço do curso</label>
-                <input type="text" id="precoCurso" placeholder="Digite o preço do curso">
-
-                <label for="certificado">Possui certificado?</label>
-                <select name="certificado" id="certificado">
-                    <option value="option">Sim</option>
-                    <option value="option">Não</option>
-                </select>
-                <div class="btns">
-                    <button class="btn" id="cancelBtn"><a href="{{ url('/') }}">Cancelar</a></button>
-                    <button class="btn" id="sumitBtn" type="submit">Salvar</button>
-                </div>
+                <a href="{{route('logout')}}" onclick="event.preventDefault();
+                                                this.closest('form').submit();" class="btn login-btn"> Sair</a>
             </form>
+            @else
+            <a class="btn login-btn" href="{{ route('login') }}">Login</a>
+            @endauth
+            @endif
 
+            <div class="toggle" onclick="toggleMenu()">
+                <i class='openIcon bx bx-menu'></i>
+                <i class='closeIcon bx bx-x' style="display: none;"></i>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+        <div class="painel">
+            <h3>Admin Dashboard</h3>
+            <div>
+                <ul>
+                    <li><a href="{{ route('cursos.index') }}">Gerenciar Cursos</a></li>
+                    <li><a href="{{ route('alunos.index') }}">Gerenciar Alunos</a></li>
+                </ul>
+            </div>
         </div>
     </main>
+    <footer class="footer">
+        <h4>CursosMill</h4>
+        <p>Todos os direitos reservados &copy;</p>
+        <h4>Desde 2023</h4>
+    </footer>
+
+    <script src="{{Vite::asset('resources/js/index.js')}}"></script>
 </body>
 
 </html>

@@ -43,31 +43,49 @@
     </nav>
   </header>
   <main class="main">
-    <h1>A CursosMill tem tudo que você precisa</h1>
-    <ul class="categorias">
-      <li><a href="#">Programação</a></li>
-      <li><a href="#">Culinária</a></li>
-      <li><a href="#">Engenharia</a></li>
-      <li><a href="#">Gastronomia</a></li>
-      <li><a href="#">Ciêcias</a></li>
-      <li><a href="#">Nutrição</a></li>
-    </ul>
-    <span class="divider"></span>
-    <h3 class="hot">EM ALTA</h3>
-    <div class="cursos-box">
-      @foreach($cursos as $curso)
-      <div class="curso">
-        <h3>{{$curso->titulo}} <small>- {{ $curso->categoria }} ({{ $curso->avaliacoes }})</small></h3>
-        <p>{{$curso->descricao}}</p>
-        <h4>Apenas R${{$curso->preco}} <small>
-            <p>Instrutor: {{$curso->instrutor}}</p>
-          </small>
-        </h4>
+    @if(session('success'))
+    <div class="alert alert-success">
+      {{ session('success') }}
+    </div>
+    @endif
+    <div class="painel">
 
-
-        <a href="{{url("/cursos/$curso->id")}}">Mais informações </a>
+      <h2>Detalhes do Aluno</h2>
+      <span class="divider"></span>
+      <div>
+        <p><strong>ID:</strong> {{ $aluno->id }}</p>
+        <p><strong>Nome:</strong> {{ $aluno->name }}</p>
+        <p><strong>Email:</strong> {{ $aluno->email }}</p>
       </div>
-      @endforeach
+      <div>
+        <h3>Cursos Inscritos:</h3>
+        @if ($aluno->cursos->count() > 0)
+        <ul>
+          @foreach ($aluno->cursos as $curso)
+          <li>
+            <strong>Curso:</strong> {{ $curso->titulo }}
+            <br>
+            <strong>Data de Inscrição:</strong> {{ $curso->pivot->created_at }}
+            <br>
+            <strong>Status da Inscrição:</strong> Inscrito
+
+          </li> @endforeach
+        </ul>
+        @else
+        <p>O aluno não está inscrito em nenhum curso.</p>
+        @endif
+      </div>
+
+      <div style="display: inline-flex;">
+        <a href="{{ route('alunos.edit', $aluno->id) }}" class="btn">Editar</a>
+        <form action="{{ route('alunos.destroy', $aluno->id) }}" method="POST">
+          @csrf
+          @method('DELETE')
+          <button type="submit" onclick="return confirm('Tem certeza?')" class="btn">Excluir</button>
+        </form>
+      </div>
+
+
     </div>
   </main>
   <footer class="footer">
