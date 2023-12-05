@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "/api/index.php",
-      "use": "vercel-php@0.6.0"
+  "functions": {
+    "api/index.php": {
+      "runtime": "vercel-php@0.5.3"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/build/(.*)",
@@ -26,8 +25,8 @@
   ],
   "env": {
     "APP_NAME": "Vercel Laravel",
-    "APP_ENV": "local",
-    "APP_DEBUG": "true",
+    "APP_ENV": "production",
+    "APP_DEBUG": "false",
     "APP_URL": "https://test-vercell-gamma.vercel.app/",
     "APP_KEY": "base64:PajWIfBvz7eUlBQ3UlSg5rW2pwqcSFxnvxjByUHf6Vo=",
     "VERCEL_DEMO_MODE": "true",
