@@ -1,5 +1,7 @@
 .main {
-    height: 100vh;
+    min-height: 100vh;
+    padding-top: 100px;
+
 }
 
 .container {
@@ -32,4 +34,16 @@
     justify-content: center;
     gap: 1rem;
 
+}
+
+@media (max-width: 950px) {
+    .container {
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .container .box {
+        width: 90%;
+    }
 }

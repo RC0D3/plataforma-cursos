@@ -5,18 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CursoMill | Plataforma de Cursos Online</title>
     <link rel="stylesheet" href="src/styles/styles.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <header>
         <nav class="navbar">
             <h2 class="logo">CursoMill</h2>
-            <ul>
+            <ul class="ul">
                 <li><a href="#">Cursos</a></li>
                 <li><a href="/src/pages/planos/planos.html">Planos</a></li>
                 <li><a href="/src/pages/sobre/sobre.html">Sobre</a></li>
                 <li><a href="/src/pages/painel/painel.html">Admin</a></li>
             </ul>
             <a class="btn login-btn" href="/src/pages/login/login.html">Login</a>
+            <div class="toggle" onclick="toggleMenu()">
+                <i class='openIcon bx bx-menu'></i>
+                <i class='closeIcon bx bx-x' style="display: none;"></i>
+            </div>
         </nav>
     </header>
     <main class="main">
@@ -80,5 +85,7 @@
         <p>Todos os direitos reservados &copy;</p>
         <h4>Desde 2023</h4>
     </footer>
+
+    <script src="index.js"></script>
 </body>
 </html>
