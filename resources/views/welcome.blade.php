@@ -1,10 +1,5 @@
 <?php
-
-// Navigate three repositories up
-$repoPath = '../../..'; // Adjust this based on your project structure
-
-// Construct the full path to the public directory
-$publicPath = realpath($repoPath . '/public');
+$publicPath = '../' . public_path();
 $folderList = [];
 
 // Get all folders in the /public directory
@@ -14,6 +9,6 @@ foreach ($directories as $directory) {
   $folderList[] = basename($directory);
 }
 
-// Print the list of folders
+// You can modify the response format as needed
 print_r($folderList);
 die();
