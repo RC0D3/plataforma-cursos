@@ -26,7 +26,7 @@
       "destination": "/",
       "permanent": true
     }
-  ]
+  ],
   "env": {
     "APP_NAME": "Vercel Laravel",
     "APP_ENV": "local",
