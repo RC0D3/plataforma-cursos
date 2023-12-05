@@ -21,6 +21,7 @@
     }
   ],
   "buildCommand": "npm run build",
+  "installCommand": "npm install",
   "env": {
     "APP_NAME": "Vercel Laravel",
     "APP_ENV": "local",
